@@ -1,2 +1,2 @@
-# scala-js-mui-next
-ScalaJs facade for Material-UI Next
+# scala-js-mui
+ScalaJs facade for Material-UI
