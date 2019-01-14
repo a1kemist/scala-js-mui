@@ -14,7 +14,7 @@ addSbtPlugin("ch.epfl.scala" % "sbt-web-scalajs-bundler" % "0.14.0")
 
 // Sbt PGP plugin provides PGP signing for SBT 0.12+
 // https://github.com/sbt/sbt-pgp
-addSbtPlugin("com.jsuereth" % "sbt-pgp" % "1.1.1")
+addSbtPlugin("io.crashbox" % "sbt-gpg" % "0.2.0")
 
 // Sbt Release plugin for handling the release process
 // https://github.com/sbt/sbt-release

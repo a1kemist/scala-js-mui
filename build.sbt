@@ -1,3 +1,4 @@
+import sbt._
 
 val commonSettings = Seq(
     name := "scala-js-mui",
@@ -35,15 +36,15 @@ val publicationSettings  = Seq(
         </developers>
 )
 
-lazy val releaseSettings = Seq(
+val releaseSettings = Seq(
+    gpgCommand := "gpg2",
     releaseUseGlobalVersion := false,
     releaseVersionFile := file(name.value + "/version.sbt"),
     releaseTagName := {
         val versionInThisBuild = (version in ThisBuild).value
         val versionValue = version.value
         s"${name.value}-v${if (releaseUseGlobalVersion.value) versionInThisBuild else versionValue}"
-    },
-    releasePublishArtifactsAction := PgpKeys.publishSigned.value
+    }
 )
 
 lazy val root = (project in file("."))
@@ -60,6 +61,8 @@ val core = (project in file("core"))
     .settings(commonSettings: _*)
     .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin)
     .settings(npmSettings: _*)
+    .settings(publicationSettings: _*)
+    .settings(releaseSettings: _*)
     .settings(
         name := "scala-js-mui-core",
         version := "0.1.0-SNAPSHOT",
@@ -73,6 +76,8 @@ lazy val icons = (project in file("icons"))
     .settings(commonSettings: _*)
     .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin)
     .settings(npmSettings: _*)
+    .settings(publicationSettings: _*)
+    .settings(releaseSettings: _*)
     .settings(
         name := "scala-js-mui-icons",
         version := "0.1.0-SNAPSHOT",
