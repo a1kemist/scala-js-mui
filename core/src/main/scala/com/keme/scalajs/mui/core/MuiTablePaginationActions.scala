@@ -13,7 +13,7 @@ object MuiTablePaginationActions extends ReactBridgeComponent {
 
     override protected lazy val componentValue: js.Object = RawComponent
 
-    @JSImport("@material-ui/core/TablePaginationActions/TablePaginationActions", JSImport.Default)
+    @JSImport("@material-ui/core/TablePagination/TablePaginationActions", JSImport.Default)
     @js.native
     object RawComponent extends js.Object
 

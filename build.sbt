@@ -1,11 +1,14 @@
 
 val commonSettings = Seq(
     name := "scala-js-mui",
-    version := "0.1.0-SNAPSHOT",
     scalaVersion := "2.12.8",
     organization := "com.keme",
     homepage := Some(url("https://github.com/Myrddin27/scala-js-mui")),
     licenses := ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")) :: Nil
+)
+
+val npmSettings = Seq(
+    useYarn := true
 )
 
 val publicationSettings  = Seq(
@@ -20,12 +23,16 @@ val publicationSettings  = Seq(
             <developerConnection>scm:git:git@github.com:Myrddin27/scala-js-mui.git</developerConnection>
             <url>github.com:Myrddin27/scala-js-mui.git</url>
         </scm>
-            <developers>
-                <developer>
-                    <id>Myrddin27</id>
-                    <name>Logan Nelson</name>
-                </developer>
-            </developers>
+        <developers>
+            <developer>
+                <id>Myrddin27</id>
+                <name>Logan Nelson</name>
+            </developer>
+            <developer>
+                <id>JustinWomack</id>
+                <name>Justin Womack</name>
+            </developer>
+        </developers>
 )
 
 lazy val root = (project in file("."))
@@ -41,8 +48,10 @@ lazy val root = (project in file("."))
 val core = (project in file("core"))
     .settings(commonSettings: _*)
     .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin)
+    .settings(npmSettings: _*)
     .settings(
-        useYarn := true,
+        name := "scala-js-mui-core",
+        version := "0.1.0-SNAPSHOT",
         libraryDependencies ++= Dependencies.core.value,
         npmDependencies in Compile ++= Dependencies.coreJs,
     )
@@ -52,8 +61,12 @@ lazy val genMuiIcons = TaskKey[Seq[File]]("gen-mui-icons")
 lazy val icons = (project in file("icons"))
     .settings(commonSettings: _*)
     .enablePlugins(ScalaJSPlugin, ScalaJSBundlerPlugin)
+    .settings(npmSettings: _*)
     .settings(
-        useYarn := true,
+        name := "scala-js-mui-icons",
+        version := "0.1.0-SNAPSHOT",
+        // disable publishing the main API jar
+        publishArtifact in (Compile, packageDoc) := false,
         libraryDependencies ++= Dependencies.icons.value,
         npmDependencies in Compile ++= Dependencies.iconsJs,
         sourceGenerators in Compile += Def.task {
