@@ -1,11 +1,7 @@
 import sbt._
 
 val commonSettings = Seq(
-    name := "scala-js-mui",
-    scalaVersion := "2.12.8",
-    organization := "com.keme",
-    homepage := Some(url("https://github.com/Myrddin27/scala-js-mui")),
-    licenses := ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")) :: Nil
+    scalaVersion := "2.12.8"
 )
 
 val npmSettings = Seq(
@@ -13,11 +9,27 @@ val npmSettings = Seq(
 )
 
 val publicationSettings  = Seq(
-    publishTo := {
-        val nexus = "https://oss.sonatype.org/"
-        if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
-        else Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-    },
+    description := "ScalaJs Facade for Material UI",
+    developers := List(
+        Developer(
+            id = "Myrddin27",
+            name = "Logan Nelson",
+            email = "lsnelson33@gmail.com",
+            url = url("https://github.com/Myrddin27")
+        ),
+        Developer(
+            id = "JustinWomack",
+            name = "Justin Womack",
+            email = "JustinWomack@users.noreply.github.com",
+            url = url("https://github.com/JustinWomack")
+        )
+    ),
+    homepage := Some(url("https://github.com/Myrddin27/scala-js-mui")),
+    licenses := ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")) :: Nil,
+    organization := "com.kemesoft",
+    organizationName := "kemesoft",
+    organizationHomepage := Some(url("http://www.kemesoft.com/")),
+    homepage := Some(url("https://github.com/Myrddin27/scala-js-mui")),
     pomExtra :=
         <scm>
             <connection>scm:git:github.com/Myrddin27!/scala-js-mui</connection>
@@ -33,13 +45,28 @@ val publicationSettings  = Seq(
                 <id>JustinWomack</id>
                 <name>Justin Womack</name>
             </developer>
-        </developers>
+        </developers>,
+    // Remove all additional repository other than Maven Central from POM
+    pomIncludeRepository := { _ => false },
+    publishMavenStyle := true,
+    publishTo := {
+        val nexus = "https://oss.sonatype.org/"
+        if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
+        else Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+    },
+    scmInfo := Some(
+        ScmInfo(
+            url("https://github.com/Myrddin27/scala-js-mui"),
+            "scm:git@github.com:Myrddin27/scala-js-mui.git"
+        )
+    )
+
 )
 
 val releaseSettings = Seq(
     gpgCommand := "gpg2",
     releaseUseGlobalVersion := false,
-    releaseVersionFile := file(name.value + "/version.sbt"),
+    releaseVersionFile := (baseDirectory.value / "version.sbt"),
     releaseTagName := {
         val versionInThisBuild = (version in ThisBuild).value
         val versionValue = version.value
@@ -104,7 +131,7 @@ lazy val icons = (project in file("icons"))
                 val file = pkg / s"$name.scala"
                 IO.write(
                     file,
-                    s"""package com.keme.scalajs.mui.icons
+                    s"""package com.kemesoft.scalajs.mui.icons
                        |
                        |import com.payalabs.scalajs.react.bridge.{ReactBridgeComponent, WithProps}
                        |
