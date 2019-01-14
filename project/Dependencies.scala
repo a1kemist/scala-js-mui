@@ -27,6 +27,13 @@ object Dependencies {
         val dom = "react-dom"
     }
 
+    object enumeratum {
+        val group = "com.beachape"
+
+        val coreVersion = "1.5.13"
+        val core = "enumeratum"
+    }
+
     /** ScalaCSS
       *
       * Write type safe css (works well with ScalaJs React).
@@ -81,7 +88,8 @@ object Dependencies {
         scalaJsReact.group %%% scalaJsReact.extMonocle % scalaJsReact.version,
         scalaJsReactBridge.group %%% scalaJsReactBridge.core % scalaJsReactBridge.version,
         scalaCSS.group %%% scalaCSS.core % scalaCSS.version,
-        scalaCSS.group %%% scalaCSS.extReact % scalaCSS.version
+        scalaCSS.group %%% scalaCSS.extReact % scalaCSS.version,
+        enumeratum.group %%% enumeratum.core % enumeratum.coreVersion
     ))
 
     val commonJs: Seq[(String, String)] = Seq(

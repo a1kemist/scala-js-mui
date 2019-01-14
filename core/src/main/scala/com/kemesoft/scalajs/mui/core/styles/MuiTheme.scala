@@ -5,6 +5,7 @@ import scala.scalajs.js.JSConverters._
 
 @js.native
 trait MuiTheme extends js.Object {
+    def shape: Shape = js.native
     def breakpoints: js.Object = js.native
     def direction: String = js.native
     def mixins: js.Object = js.native
@@ -16,8 +17,23 @@ trait MuiTheme extends js.Object {
     def shadows: js.Array[String] = js.native
     def typography: js.Object = js.native
     def transitions: js.Object = js.native
-    def spacing: MuiSpacing = js.native
+    def spacing: Spacing = js.native
     def zIndex: js.Object = js.native
+}
+
+@js.native
+trait Shape extends js.Object {
+    def borderRadius: Double = js.native
+}
+
+object Shape {
+    def apply(borderRadius: Double) = {
+        val o = Map[String, Any](
+            "borderRadius" -> borderRadius
+        )
+
+        o.toJSDictionary.asInstanceOf[js.Object].asInstanceOf[Shape]
+    }
 }
 
 object MuiTheme {

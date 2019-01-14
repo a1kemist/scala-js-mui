@@ -9,8 +9,8 @@ import scala.scalajs.js.|
 package object styles {
     @JSImport("@material-ui/core/styles/createMuiTheme.js", JSImport.Default)
     @js.native
-    object createMuiTheme extends js.Function1[js.Object, js.Object] {
-        override def apply(theme: js.Object = js.Object()): js.Object = js.native
+    object createMuiTheme extends js.Function1[js.UndefOr[MuiThemeOptions], MuiTheme] {
+        override def apply(options: js.UndefOr[MuiThemeOptions] = js.undefined): MuiTheme = js.native
     }
 
     @JSImport("@material-ui/core/styles/createPalette.js", JSImport.Default)
@@ -21,8 +21,8 @@ package object styles {
 
     @JSImport("@material-ui/core/styles/createMixins.js", JSImport.Default)
     @js.native
-    object createMixins extends js.Function3[js.Object, js.Object, js.Object, js.Object] {
-        override def apply(breakpoints: js.Object, spacing: js.Object, mixins: js.Object): js.Object = js.native
+    object createMixins extends js.Function3[Breakpoints, Spacing, MixinsOptions, Mixins] {
+        override def apply(breakpoints: Breakpoints, spacing: Spacing, mixins: MixinsOptions): Mixins = js.native
     }
 
     @JSImport("@material-ui/core/styles/createBreakpoints.js", JSImport.Default)
@@ -55,7 +55,7 @@ package object styles {
 
     @JSImport("@material-ui/core/styles/spacing.js", JSImport.Default)
     @js.native
-    object spacing extends MuiSpacing
+    object spacing extends Spacing
 
     @JSImport("@material-ui/core/styles/transitions.js", JSImport.Default)
     @js.native
