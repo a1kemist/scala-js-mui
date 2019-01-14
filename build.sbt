@@ -35,6 +35,17 @@ val publicationSettings  = Seq(
         </developers>
 )
 
+lazy val releaseSettings = Seq(
+    releaseUseGlobalVersion := false,
+    releaseVersionFile := file(name.value + "/version.sbt"),
+    releaseTagName := {
+        val versionInThisBuild = (version in ThisBuild).value
+        val versionValue = version.value
+        s"${name.value}-v${if (releaseUseGlobalVersion.value) versionInThisBuild else versionValue}"
+    },
+    releasePublishArtifactsAction := PgpKeys.publishSigned.value
+)
+
 lazy val root = (project in file("."))
     .settings(commonSettings: _*)
     .settings(

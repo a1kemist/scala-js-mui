@@ -11,3 +11,11 @@ addSbtPlugin("com.vmunier" % "sbt-web-scalajs" % "1.0.8-0.6")
 // ScalaJs Bundler for using and packaging npm dependencies
 // https://scalacenter.github.io/scalajs-bundler/
 addSbtPlugin("ch.epfl.scala" % "sbt-web-scalajs-bundler" % "0.14.0")
+
+// Sbt PGP plugin provides PGP signing for SBT 0.12+
+// https://github.com/sbt/sbt-pgp
+addSbtPlugin("com.jsuereth" % "sbt-pgp" % "1.1.1")
+
+// Sbt Release plugin for handling the release process
+// https://github.com/sbt/sbt-release
+addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.11")
