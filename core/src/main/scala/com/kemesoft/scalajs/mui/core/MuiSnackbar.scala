@@ -7,7 +7,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import scala.scalajs.js.|
 import scala.scalajs.js.JSConverters._
-import com.keme.scalajs.mui.core.styles.transitions
+import com.kemesoft.scalajs.mui.core.styles.transitions
 
 /**
   * https://material-ui-next.com/api/snackbar/

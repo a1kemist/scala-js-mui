@@ -1,6 +1,6 @@
 package com.kemesoft.scalajs.mui.core
 
-import com.keme.scalajs.mui.internal.svgicons.ArrowDropDown
+import com.kemesoft.scalajs.mui.internal.svgicons.ArrowDropDown
 import com.kemesoft.scalajs.mui.internal.svgicons.ArrowDropDown
 import com.payalabs.scalajs.react.bridge.{ReactBridgeComponent, WithProps}
 import japgolly.scalajs.react.raw.React

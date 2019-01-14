@@ -1,7 +1,7 @@
 package com.kemesoft.scalajs.mui.core.styles
 
-import com.keme.scalajs.mui.core.colors
-import com.keme.scalajs.mui.core.colors.MuiColor
+import com.kemesoft.scalajs.mui.core.colors
+import com.kemesoft.scalajs.mui.core.colors.MuiColor
 import com.kemesoft.scalajs.mui.core.colors.MuiColor
 
 import scala.scalajs.js

@@ -92,7 +92,6 @@ val core = (project in file("core"))
     .settings(releaseSettings: _*)
     .settings(
         name := "scala-js-mui-core",
-        version := "0.1.0-SNAPSHOT",
         libraryDependencies ++= Dependencies.core.value,
         npmDependencies in Compile ++= Dependencies.coreJs,
     )
@@ -107,7 +106,6 @@ lazy val icons = (project in file("icons"))
     .settings(releaseSettings: _*)
     .settings(
         name := "scala-js-mui-icons",
-        version := "0.1.0-SNAPSHOT",
         // disable publishing the main API jar
         publishArtifact in (Compile, packageDoc) := false,
         libraryDependencies ++= Dependencies.icons.value,
