@@ -7,27 +7,25 @@ package object colors {
 
     @JSImport("@material-ui/core/colors/amber", JSImport.Default)
     @js.native
-    object amber extends MuiColor
+    object amber extends Color
 
     @JSImport("@material-ui/core/colors/grey", JSImport.Default)
     @js.native
-    object grey extends MuiColor
+    object grey extends Color
 
     @JSImport("@material-ui/core/colors/indigo", JSImport.Default)
     @js.native
-    object indigo extends MuiColor
+    object indigo extends Color
 
     @JSImport("@material-ui/core/colors/pink", JSImport.Default)
     @js.native
-    object pink extends MuiColor
+    object pink extends Color
 
     @JSImport("@material-ui/core/colors/red", JSImport.Default)
     @js.native
-    object red extends MuiColor
+    object red extends Color
 
     @JSImport("@material-ui/core/colors/common", JSImport.Default)
-    object common extends js.Object {
-        def black: String = js.native
-        def white: String = js.native
-    }
+    @js.native
+    object common extends CommonColors
 }
