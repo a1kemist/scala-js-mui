@@ -94,6 +94,50 @@ val core = (project in file("core"))
         name := "scala-js-mui-core",
         libraryDependencies ++= Dependencies.core.value,
         npmDependencies in Compile ++= Dependencies.coreJs,
+        sourceGenerators in Compile += Def.task {
+            val s = streams.value
+            val dir = (sourceManaged in Compile).value
+            val pkg = dir / "com" / "keme" / "scalajs" / "mui" / "core" / "colors"
+            s.log.info("Installing npm dependencies to generate source files")
+            val npmDirectory = (npmInstallDependencies in Compile).value
+            s.log.info("Finding eligible sources...")
+            val colorSources = {
+                (npmDirectory / "node_modules" / "@material-ui" / "core" / "colors" ) * ("*.js" -- "index.js" -- "index.es.js" -- "common.js")
+            }
+            s.log.info(s"Creating output folder ${pkg.getPath}")
+            IO.createDirectory(pkg)
+            s.log.info(s"Generating source file contents...")
+            // Iterate through all of the icon source files
+            val colorsPkgFile: File = pkg / "package.scala"
+            val colorsPkg: String = colorSources.get.sortBy(_.getName).map(f => {
+                val name = f.getName.stripSuffix(".js")
+                s"""    @JSImport("@material-ui/core/colors/$name", JSImport.Default)
+                   |    @js.native
+                   |    object $name extends Color
+                   |""".stripMargin
+            }).mkString(
+                start =
+                    """package com.kemesoft.scalajs.mui.core
+                      |
+                      |import scala.scalajs.js
+                      |import scala.scalajs.js.annotation.JSImport
+                      |
+                      |package object colors {
+                      |
+                      |""".stripMargin,
+                sep = "\n",
+                end =
+                    """
+                      |    @JSImport("@material-ui/core/colors/common", JSImport.Default)
+                      |    @js.native
+                      |    object common extends CommonColors
+                      |}
+                      |""".stripMargin
+            )
+            s.log.info(s"Writing source files...")
+            IO.write(colorsPkgFile, colorsPkg)
+            Seq(colorsPkgFile)
+        }
     )
 
 lazy val genMuiIcons = TaskKey[Seq[File]]("gen-mui-icons")

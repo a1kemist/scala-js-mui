@@ -4,7 +4,7 @@ import scala.scalajs.js
 import scala.scalajs.js.JSConverters._
 
 @js.native
-trait MuiDuration extends js.Object {
+trait Duration extends js.Object {
     def shortest: Int = js.native
     def shorter: Int = js.native
     def short: Int = js.native
@@ -14,14 +14,14 @@ trait MuiDuration extends js.Object {
     def leavingScreen: Int = js.native
 }
 
-object MuiDuration {
+object Duration {
     def apply(shortest: Int,
               shorter: Int,
               short: Int,
               standard: Int,
               complex: Int,
               enteringScreen: Int,
-              leavingScreen: Int): MuiDuration = {
+              leavingScreen: Int): Duration = {
         val o: Map[String, Any] = Map(
                 "shortest" -> shortest,
                 "shorter" -> shorter,
@@ -31,7 +31,6 @@ object MuiDuration {
                 "enteringScreen" -> enteringScreen,
                 "leavingScreen" -> leavingScreen
         )
-        
-        o.toJSDictionary.asInstanceOf[js.Object].asInstanceOf[MuiDuration]
+        o.toJSDictionary.asInstanceOf[js.Object].asInstanceOf[Duration]
     }
 }

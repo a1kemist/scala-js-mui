@@ -3,7 +3,7 @@ package com.kemesoft.scalajs.mui.core.styles
 import com.payalabs.scalajs.react.bridge.{ReactBridgeComponent, WithProps}
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.annotation.{JSGlobal, JSImport}
 import scala.scalajs.js.|
 
 object MuiThemeProvider extends ReactBridgeComponent {
@@ -14,9 +14,25 @@ object MuiThemeProvider extends ReactBridgeComponent {
     @js.native
     object RawComponent extends js.Object
 
-    def apply(disableStylesGeneration: Option[Boolean] = None,
-              sheetsManager: Option[js.Object] = None,
-              theme: js.Object | js.Function): WithProps = auto
+    def apply(theme: Theme | js.Function1[Option[Theme], Theme],
+              sheetsManager: Option[JSMap[StylesCreator, JSMap[Theme, SheetManagerTheme]]] = None,
+              disableStylesGeneration: Option[Boolean] = None): WithProps = auto
+}
+
+@js.native
+@JSGlobal("Map")
+class JSMap[K, V] extends js.Object {
+    def size: Int = js.native
+
+    def clear(): Unit = js.native
+
+    def has(key: K): Boolean = js.native
+
+    def get(key: K): js.UndefOr[V] = js.native
+
+    def set(key: K, value: V): this.type = js.native
+
+    def delete(key: K): Boolean = js.native
 }
 
 /** Legacy Facade */
