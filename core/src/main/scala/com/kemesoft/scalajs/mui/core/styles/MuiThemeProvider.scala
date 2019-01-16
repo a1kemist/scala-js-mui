@@ -14,7 +14,7 @@ object MuiThemeProvider extends ReactBridgeComponent {
     @js.native
     object RawComponent extends js.Object
 
-    def apply(theme: Theme | js.Function1[Option[Theme], Theme],
+    def apply(theme: js.Object | js.Function,
               sheetsManager: Option[JSMap[StylesCreator, JSMap[Theme, SheetManagerTheme]]] = None,
               disableStylesGeneration: Option[Boolean] = None): WithProps = auto
 }
