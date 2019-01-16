@@ -23,7 +23,7 @@ trait ThemeOptions extends js.Object {
 object ThemeOptions {
     def apply(shape: Option[ShapeOptions] = None,
               breakpoints: Option[BreakpointsOptions] = None,
-              direction: Option[String] = None,
+              direction: Option[Direction.Value] = None,
               mixins: Option[MixinsOptions] = None,
               overrides: Option[Overrides] = None,
               palette: Option[PaletteOptions] = None,
@@ -35,7 +35,7 @@ object ThemeOptions {
         val o: Map[String, Any] = Seq(
             shape.map("shape" -> _),
             breakpoints.map("breakpoints" -> _),
-            direction.map("direction" -> _),
+            direction.map("direction" -> _.toString),
             mixins.map("mixins" -> _),
             overrides.map("overrides" -> _),
             palette.map("palette" -> _),
