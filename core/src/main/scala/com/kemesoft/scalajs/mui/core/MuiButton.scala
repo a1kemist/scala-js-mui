@@ -41,8 +41,12 @@ object MuiButton extends ReactBridgeComponent {
       *                              'small' or 'medium' or 'large'
       *                              'small' is equivalent to the dense button styling.
       * @param `type`                Ignore
-      * @param variant               The base style of the button
-      *                              'flat' or 'raised' or 'fab'
+      * @param variant               The variant to use. WARNING: flat and raised are deprecated. Instead use text and
+      *                              contained respectively. fab and extendedFab are deprecated. Instead use <Fab> and
+      *                              <Fab variant="extended">
+      *
+      *                              enum: 'text', 'outlined', 'contained', 'fab', 'extendedFab', 'flat', 'raised'
+      *
       * @return                      WithProps component
       */
     def apply(classes: js.Object = js.Object(),
@@ -58,7 +62,7 @@ object MuiButton extends ReactBridgeComponent {
               mini: Option[Boolean] = Some(false),
               size: Option[String] = Some("medium"),
               `type`: Option[String] = Some("button"),
-              variant: Option[String] = Some("flat")): WithProps = auto
+              variant: Option[String] = Some("text")): WithProps = auto
 }
 
 /** Legacy Facade */
