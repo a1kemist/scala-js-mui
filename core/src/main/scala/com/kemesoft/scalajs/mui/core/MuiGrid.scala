@@ -13,6 +13,7 @@ import scala.scalajs.js.|
 object MuiGrid extends ReactBridgeComponent {
 
     import JsWriterImplicits.enumeratumWriter
+    import JsWriterImplicits.breakpointWriter
 
     override protected lazy val componentValue: js.Function = RawComponent
 
@@ -29,11 +30,11 @@ object MuiGrid extends ReactBridgeComponent {
               direction: Option[GridDirection] = Some(GridDirection.Row),
               item: Option[Boolean] = Some(false),
               justify: Option[GridJustification] = Some(GridJustification.FlexStart),
-              xs: Option[String | Boolean | Int] = None,
-              sm: Option[String | Boolean | Int] = None,
-              md: Option[String | Boolean | Int] = None,
-              lg: Option[String | Boolean | Int] = None,
-              xl: Option[String | Boolean | Int] = None,
+              xs: Option[String | Boolean | Int] = Some(false),
+              sm: Option[String | Boolean | Int] = Some(false),
+              md: Option[String | Boolean | Int] = Some(false),
+              lg: Option[String | Boolean | Int] = Some(false),
+              xl: Option[String | Boolean | Int] = Some(false),
               spacing: Option[Int] = Some(0),
               wrap: Option[GridWrap] = Some(GridWrap.Wrap),
               zeroMinWidth: Option[Boolean] = Some(false)): WithProps = auto
