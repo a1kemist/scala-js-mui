@@ -9,7 +9,7 @@ object Dependencies {
       * 
       */
     object materialUI {
-        val version = "3.8.2"
+        val version = "3.9.2"
         val core = "@material-ui/core"
         val iconsVersion = "3.0.2"
         val icons = "@material-ui/icons"
@@ -22,7 +22,7 @@ object Dependencies {
       * 
       */
     object react {
-        val version = "16.5.1"
+        val version = "16.7.0"
         val core = "react"
         val dom = "react-dom"
     }
@@ -57,7 +57,7 @@ object Dependencies {
         val group = "org.scala-js"
 
         // https://github.com/scala-js/scala-js-dom
-        val domVersion = "0.9.3"
+        val domVersion = "0.9.6"
         val dom = "scalajs-dom"
     }
 
@@ -68,17 +68,11 @@ object Dependencies {
       * https://github.com/japgolly/scalajs-react
       */
     object scalaJsReact {
-        val version = "1.3.1"
+        val version = "1.4.0"
         val group = "com.github.japgolly.scalajs-react"
         val core = "core"
         val extra = "extra"
         val extMonocle = "ext-monocle"
-    }
-    
-    object scalaJsReactBridge {
-        val version = "0.7.0"
-        val group = "com.payalabs"
-        val core = "scalajs-react-bridge"
     }
 
     val common = Def.setting(Seq(
@@ -86,7 +80,6 @@ object Dependencies {
         scalaJsReact.group %%% scalaJsReact.core % scalaJsReact.version,
         scalaJsReact.group %%% scalaJsReact.extra % scalaJsReact.version,
         scalaJsReact.group %%% scalaJsReact.extMonocle % scalaJsReact.version,
-        scalaJsReactBridge.group %%% scalaJsReactBridge.core % scalaJsReactBridge.version,
         scalaCSS.group %%% scalaCSS.core % scalaCSS.version,
         scalaCSS.group %%% scalaCSS.extReact % scalaCSS.version,
         enumeratum.group %%% enumeratum.core % enumeratum.coreVersion

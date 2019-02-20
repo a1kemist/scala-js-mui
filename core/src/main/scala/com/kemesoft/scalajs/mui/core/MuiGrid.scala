@@ -1,11 +1,7 @@
 package com.kemesoft.scalajs.mui.core
 
-import com.payalabs.scalajs.react.bridge
-import com.payalabs.scalajs.react.bridge.JsComponentType
-import com.payalabs.scalajs.react.bridge.{JsWriter, ReactBridgeComponent, WithProps}
-import enumeratum.{EnumEntry, Enum}
-import japgolly.scalajs.react.vdom.VdomNode
-import japgolly.scalajs.react.vdom.VdomElement
+import com.payalabs.scalajs.react.bridge.{ReactBridgeComponent, WithProps}
+import enumeratum.{Enum, EnumEntry}
 import japgolly.scalajs.react.raw.React
 
 import scala.scalajs.js
@@ -109,13 +105,6 @@ object MuiGrid extends ReactBridgeComponent {
             zeroMinWidth = None
         )
     }
-}
-
-object TestObj {
-    val func: VdomElement => Unit = (v: JsComponentType) => {
-        v.raw
-    }
-    def componentTest = MuiGrid(component = MuiPaper())
 }
 
 sealed abstract class GridItemsAlignment(override val entryName: String) extends EnumEntry

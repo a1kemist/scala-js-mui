@@ -1,14 +1,20 @@
 package com.kemesoft.scalajs.mui.core
 
-import com.payalabs.scalajs.react.bridge.{ReactBridgeComponent, WithProps}
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom._
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import scala.scalajs.js.|
+import scala.scalajs.js.JSConverters._
 
 /**
   * https://material-ui-next.com/api/paper/
   */
+/** Legacy Facade */
+/*
+import com.payalabs.scalajs.react.bridge.{ReactBridgeComponent, WithProps}
+
 object MuiPaper extends ReactBridgeComponent {
 
     override protected lazy val componentValue: js.Function = RawComponent
@@ -23,9 +29,8 @@ object MuiPaper extends ReactBridgeComponent {
               elevation: Option[Int] = None,
               square: Option[Boolean] = None): WithProps = auto
 }
+*/
 
-/** Legacy Facade */
-/*
 object MuiPaper {
     @JSImport("@material-ui/core/Paper", JSImport.Default)
     @js.native
@@ -33,22 +38,28 @@ object MuiPaper {
 
     @js.native
     trait Props extends js.Object {
-        var classes: js.Object = js.native
-        var component: js.UndefOr[String | js.Function] = js.native
-        var elevation: js.UndefOr[Int] = js.native
-        var square: js.UndefOr[Boolean] = js.native
+        def classes: js.Object = js.native
+        def className: String = js.native
+        def component: js.UndefOr[String | js.Function] = js.native
+        def elevation: js.UndefOr[Int] = js.native
+        def square: js.UndefOr[Boolean] = js.native
     }
 
-    def props(classes: js.Object,
-              component: Option[String | js.Function] = None,
-              elevation: Option[Int] = None,
-              square: Option[Boolean] = None): Props = {
-        val p = (new js.Object).asInstanceOf[Props]
-        p.classes = classes
-        p.component = component.orUndefined
-        p.elevation = elevation.orUndefined
-        p.square = square.orUndefined
-        p
+    object Props {
+        def apply(classes: js.Object,
+                  className: js.UndefOr[String] = js.undefined,
+                  component: js.UndefOr[String | js.Function] = js.undefined,
+                  elevation: js.UndefOr[Int] = js.undefined,
+                  square: js.UndefOr[Boolean] = js.undefined): Props = {
+            val p = Map(
+                "classes" -> classes,
+                "className" -> className,
+                "component" -> component,
+                "elevation" -> elevation,
+                "square" -> square
+            )
+            p.toJSDictionary.asInstanceOf[js.Object].asInstanceOf[Props]
+        }
     }
 
     val impl = JsComponent[Props, Children.Varargs, Null](RawComponent)
@@ -56,15 +67,18 @@ object MuiPaper {
     def apply(props: Props)(children: VdomNode*) = impl(props)(children: _*)
 
     def apply(classes: js.Object,
-              component: Option[String | js.Function] = None,
-              elevation: Option[Int] = None,
-              square: Option[Boolean] = None)(children: VdomNode*) = {
-        impl(props(
-            classes,
-            component,
-            elevation,
-            square
-        ))(children: _*)
+              className: js.UndefOr[String] = js.undefined,
+              component: js.UndefOr[String | js.Function] = js.undefined,
+              elevation: js.UndefOr[Int] = js.undefined,
+              square: js.UndefOr[Boolean] = js.undefined)(children: VdomNode*) = {
+        impl(
+            Props(
+                classes,
+                className,
+                component,
+                elevation,
+                square
+            )
+        )(children: _*)
     }
 }
-*/
