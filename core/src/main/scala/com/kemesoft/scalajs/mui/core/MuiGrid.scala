@@ -1,7 +1,8 @@
 package com.kemesoft.scalajs.mui.core
 
 import com.payalabs.scalajs.react.bridge.{ReactBridgeComponent, WithProps}
-import enumeratum.{EnumEntry, Enum}
+import enumeratum.{Enum, EnumEntry}
+import japgolly.scalajs.react.raw.React
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -13,7 +14,10 @@ import scala.scalajs.js.|
 object MuiGrid extends ReactBridgeComponent {
 
     import JsWriterImplicits.enumeratumWriter
-    import JsWriterImplicits.breakpointWriter
+    import JsWriterImplicits.vdomNodeWriter
+    import JsWriterImplicits.unionWriter3
+
+//    implicit def reactComponentWriter[Props <: js.Object, State <: js.Object]: JsWriter[React.Component[Props, State]] = bridge.writerFromConversion[React.Component[Props, State]]
 
     override protected lazy val componentValue: js.Function = RawComponent
 
@@ -25,19 +29,82 @@ object MuiGrid extends ReactBridgeComponent {
               alignItems: Option[GridItemsAlignment] = Some(GridItemsAlignment.Stretch),
               classes: Option[js.Object] = Some(js.Object()),
               className: Option[String] = None,
-              component: Option[String | js.Function] = Some("div"),
+              component: js.UndefOr[String | js.Function1[js.Object, React.Component[_, _]]] = "div",
               container: Option[Boolean] = Some(false),
               direction: Option[GridDirection] = Some(GridDirection.Row),
               item: Option[Boolean] = Some(false),
               justify: Option[GridJustification] = Some(GridJustification.FlexStart),
-              xs: Option[String | Boolean | Int] = Some(false),
-              sm: Option[String | Boolean | Int] = Some(false),
-              md: Option[String | Boolean | Int] = Some(false),
-              lg: Option[String | Boolean | Int] = Some(false),
-              xl: Option[String | Boolean | Int] = Some(false),
+              xs: js.UndefOr[String | Boolean | Int] = js.undefined,
+              sm: js.UndefOr[String | Boolean | Int] = js.undefined,
+              md: js.UndefOr[String | Boolean | Int] = js.undefined,
+              lg: js.UndefOr[String | Boolean | Int] = js.undefined,
+              xl: js.UndefOr[String | Boolean | Int] = js.undefined,
               spacing: Option[Int] = Some(0),
               wrap: Option[GridWrap] = Some(GridWrap.Wrap),
               zeroMinWidth: Option[Boolean] = Some(false)): WithProps = auto
+
+    def item(classes: Option[js.Object] = Some(js.Object()),
+             className: Option[String] = None,
+             component: js.UndefOr[String | js.Function1[js.Object, React.Component[_, _]]] = "div",
+             xs: js.UndefOr[String | Boolean | Int] = js.undefined,
+             sm: js.UndefOr[String | Boolean | Int] = js.undefined,
+             md: js.UndefOr[String | Boolean | Int] = js.undefined,
+             lg: js.UndefOr[String | Boolean | Int] = js.undefined,
+             xl: js.UndefOr[String | Boolean | Int] = js.undefined) = {
+        apply(
+            alignContent = None,
+            alignItems = None,
+            classes = classes,
+            className = className,
+            component = component,
+            container = Some(false),
+            direction = None,
+            item = Some(true),
+            justify = None,
+            xs = xs,
+            sm = sm,
+            md = md,
+            lg = lg,
+            xl = xl,
+            spacing = None,
+            wrap = None,
+            zeroMinWidth = None
+        )
+    }
+
+    def container(alignContent: Option[GridContentAlignment] = Some(GridContentAlignment.Stretch),
+                  alignItems: Option[GridItemsAlignment] = Some(GridItemsAlignment.Stretch),
+                  classes: Option[js.Object] = Some(js.Object()),
+                  className: Option[String] = None,
+                  component: js.UndefOr[String | js.Function1[js.Object, React.Component[_, _]]] = "div",
+                  justify: Option[GridJustification] = Some(GridJustification.FlexStart),
+                  xs: js.UndefOr[String | Boolean | Int] = js.undefined,
+                  sm: js.UndefOr[String | Boolean | Int] = js.undefined,
+                  md: js.UndefOr[String | Boolean | Int] = js.undefined,
+                  lg: js.UndefOr[String | Boolean | Int] = js.undefined,
+                  xl: js.UndefOr[String | Boolean | Int] = js.undefined,
+                  spacing: Option[Int] = Some(0),
+                  wrap: Option[GridWrap] = Some(GridWrap.Wrap)): WithProps = {
+        apply(
+            alignContent = None,
+            alignItems = None,
+            classes = classes,
+            className = className,
+            component = component,
+            container = Some(true),
+            direction = None,
+            item = Some(false),
+            justify = None,
+            xs = xs,
+            sm = sm,
+            md = md,
+            lg = lg,
+            xl = xl,
+            spacing = None,
+            wrap = None,
+            zeroMinWidth = None
+        )
+    }
 }
 
 sealed abstract class GridItemsAlignment(override val entryName: String) extends EnumEntry
@@ -72,7 +139,7 @@ object GridDirection extends Enum[GridDirection] {
 
     case object Row extends GridDirection("row")
     case object RowReverse extends GridDirection("row-reverse")
-    case object Column extends GridDirection("column-reverse")
+    case object Column extends GridDirection("column")
     case object ColumnReverse extends GridDirection("column-reverse")
 }
 

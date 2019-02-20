@@ -387,7 +387,6 @@ object MuiInput extends ReactBridgeComponent {
         }
 
         def extractPropsAndChildren(attrAndChildren: Seq[TagMod]): (js.Object, List[VdomNode]) = {
-            import japgolly.scalajs.react.vdom.Implicits._
 
             val b = new japgolly.scalajs.react.vdom.Builder.ToJs {}
             attrAndChildren.toTagMod.applyTo(b)
